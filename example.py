@@ -2,10 +2,10 @@ from Finance_control import finance_control
 
 # ***MAIN*** 
 def main():
-    spend = {'Medication':110, 'Doctor':32, 'Transport':142, 'Father':150, 'Hygienic':50}
-    spended = {'Medication':110, 'Doctor':64, 'Transport':100, 'Father':150, 'Hygienic':16}
+    spend = {'Medication':110, 'Doctor':32, 'Transport':142}
+    spended = {'Medication':110, 'Doctor':64, 'Transport':100}
 
-    my_finance = finance_control(1100, 0.8, 0.2, spend)
+    my_finance = finance_control(1100, 0.75, 0.25, spend)
 
     finance_control.title('windows')
     print(finance_control.importance)
