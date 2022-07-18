@@ -10,6 +10,10 @@ class finance_control:
         self.porcent_store = p_st
         self.spend = spends
 
+    def show_dict(self, dict):
+        for i in dict:
+            print(f"\t{i}: R$ {dict[i]}")
+
     def calc_percent(self, percent, total):
         if type(percent) == int:
             percent = percent/100
@@ -28,13 +32,21 @@ class finance_control:
 
         return liquid_salary
 
-    def calc_total_spends(self):
+    def calc_total_dict(self, dict):
         total_spends = 0
 
-        for i in self.spend:
-            total_spends = total_spends + self.spend[i]
+        for i in dict:
+            total_spends = total_spends + dict[i]
 
         return total_spends
+
+    def calc_spends(self, spended):
+        rest_spend = self.spend
+
+        for i in self.spend:
+            rest_spend[i] = self.spend[i] - spended[i]
+
+        return rest_spend
 
     def title(so):
         if so == "windows":

@@ -2,9 +2,10 @@ from Finance_control import finance_control
 
 # ***MAIN*** 
 def main():
-    spend = {'medication':110, 'doctor':32, 'transport':142}
+    spend = {'Medication':110, 'Doctor':32, 'Transport':142, 'Father':150, 'Hygienic':50}
+    spended = {'Medication':110, 'Doctor':64, 'Transport':100, 'Father':150, 'Hygienic':16}
 
-    my_finance = finance_control(1100, 0.75, 0.25, spend)
+    my_finance = finance_control(1100, 0.8, 0.2, spend)
 
     finance_control.title('windows')
     print(finance_control.importance)
@@ -13,10 +14,15 @@ def main():
     print("TOTAL CASH: R$", str(my_finance.raw_salary) + ".00\n")
 
     print(f"- TOTAL TO SPEND ({my_finance.porcent_spend*100}%): R$ {my_finance.raw_salary*my_finance.porcent_spend}0")
-    print("- TOTAL EXPENDITURES:     R$", str(my_finance.calc_total_spends()) + ".00")
+    print("- TOTAL EXPENDITURES:     R$", str(my_finance.calc_total_dict(spend)) + ".00")
     print("- LIQUID SALARY: (expenditures, to store): R$", str(my_finance.calc_liquid_salary()) + "0\n")
 
-    print(f"- TOTAL TO STORE ({my_finance.porcent_store*100}%): {my_finance.raw_salary*my_finance.porcent_store}")
+    print(f"- TOTAL TO STORE ({my_finance.porcent_store*100}%): {my_finance.raw_salary*my_finance.porcent_store}\n")
+
+    print("- PAYS FIXED:")
+    print(my_finance.show_dict(spend))
+    print("- ALREDY SPENDED:")
+    print(my_finance.show_dict(my_finance.calc_spends(spended)))
 
 if __name__ == "__main__":
     main()
