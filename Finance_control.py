@@ -4,16 +4,27 @@ import pandas as pd
 class finance_control:
     importance = "'Organization is essencial to financial stability, \nand reach the your goals. Either to buy something, \nor to help someone you love.'\n"
 
+    # INIT PARAMETERS
     def __init__(self, r_s, p_sp, p_st, spends):
         self.raw_salary = r_s
         self.porcent_spend = p_sp
         self.porcent_store = p_st
         self.spend = spends
 
+    # CREATE CSV
+    def create_csv(self):
+        df = pd.DataFrame()
+        for i in enumerate(self.spend):
+            df[i[1]] = []
+
+        df.to_csv('finance_control_data.csv')
+
+    # SHOW DICTS
     def show_dict(self, dict):
         for i in dict:
             print(f"\t{i}: R$ {dict[i]}")
 
+    # PORCENT CALCULUS
     def calc_percent(self, percent, total):
         if type(percent) == int:
             percent = percent/100
@@ -23,6 +34,7 @@ class finance_control:
             result_percent = total * percent
             return result_percent
 
+    # LIQUID SALARY CALCULUS
     def calc_liquid_salary(self):
         liquid_salary = self.raw_salary
 
@@ -32,6 +44,7 @@ class finance_control:
 
         return liquid_salary
 
+    # TOTAL SPEND CALCULUS 
     def calc_total_dict(self, dict):
         total_spends = 0
 
@@ -40,6 +53,7 @@ class finance_control:
 
         return total_spends
 
+    # TOTAL REST CALCULUS
     def calc_spends(self, spended):
         rest_spend = self.spend
 
@@ -48,6 +62,7 @@ class finance_control:
 
         return rest_spend
 
+    # PRINT A TITLE
     def title(so):
         if so == "windows":
             os.system("cls")
