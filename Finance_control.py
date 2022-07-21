@@ -13,6 +13,7 @@ class finance_control:
 
         try:
             self.df = pd.read_csv('finance_control_data.csv')
+            self.df = self.df.drop(columns=['Unnamed: 0'])
         except:
             self.df = self.create_csv(self.spend)
 
@@ -30,6 +31,7 @@ class finance_control:
         new_line = list(spend.values())
         self.df.loc[len(self.df.index)] = new_line
         self.df.to_csv('finance_control_data.csv')
+        return self.df
 
     # SHOW DICTS
     def show_dict(self, dict):
