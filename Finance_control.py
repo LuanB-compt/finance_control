@@ -11,13 +11,26 @@ class finance_control:
         self.porcent_store = p_st
         self.spend = spends
 
-    # CREATE CSV
-    def create_csv(self):
-        df = pd.DataFrame()
-        for i in enumerate(self.spend):
-            df[i[1]] = []
+        try:
+            self.df = pd.read_csv('finance_control_data.csv')
+        except:
+            self.df = self.create_csv(self.spend)
 
+    # CREATE CSV
+    def create_csv(self, spend):
+        df = pd.DataFrame()
+        for i in enumerate(spend):
+            df[i[1]] = []
+        
         df.to_csv('finance_control_data.csv')
+        return df
+
+    # UPDATE THE CSV
+    def update_csv(self, spend):  
+        new_line = list(spend.values())
+        self.df.loc[len(self.df.index)] = new_line
+        self.df.to_csv('finance_control_data.csv')
+
 
     # SHOW DICTS
     def show_dict(self, dict):
