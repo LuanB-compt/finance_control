@@ -10,7 +10,7 @@ def main():
     finance_control.title('windows')
     print(finance_control.importance)
 
-    print(f"ONE PERCENT FROM {my_finance.raw_salary}: {my_finance.calc_percent(1, my_finance.raw_salary)}")
+    print(f"ONE PERCENT FROM {my_finance.raw_salary}: {my_finance.calc_percent(1, my_finance.raw_salary)}") 
     print("TOTAL CASH: R$", str(my_finance.raw_salary) + ".00\n")
 
     print(f"- TOTAL TO SPEND ({my_finance.porcent_spend*100}%): R$ {my_finance.raw_salary*my_finance.porcent_spend}0")
@@ -23,6 +23,8 @@ def main():
     print(my_finance.show_dict(spend))
     print("- ALREDY SPENDED:")
     print(my_finance.show_dict(my_finance.calc_spends(spended)))
+
+    print(f"\n{my_finance.update_csv(spend)}")
 
 if __name__ == "__main__":
     main()
