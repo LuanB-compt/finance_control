@@ -31,7 +31,6 @@ class finance_control:
         self.df.loc[len(self.df.index)] = new_line
         self.df.to_csv('finance_control_data.csv')
 
-
     # SHOW DICTS
     def show_dict(self, dict):
         for i in dict:
