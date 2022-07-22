@@ -11,6 +11,9 @@ class finance_control:
         self.porcent_store = p_st
         self.spend = spends
 
+        self.this_day = spends
+        self.this_day['raw_salary'] = r_s
+
         try:
             self.df = pd.read_csv('finance_control_data.csv')
             self.df = self.df.drop(columns=['Unnamed: 0'])

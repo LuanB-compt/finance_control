@@ -24,7 +24,7 @@ def main():
     print("- ALREDY SPENDED:")
     print(my_finance.show_dict(my_finance.calc_spends(spended)))
 
-    print(f"\n{my_finance.update_csv(spend)}")
+    print(f"\n{my_finance.update_csv(my_finance.this_day)}")
 
 if __name__ == "__main__":
     main()
