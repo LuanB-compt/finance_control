@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 
-class finance_control:
+class Finance:
     importance = "'Organization is essencial to financial stability, \nand reach the your goals. Either to buy something, \nor to help someone you love.'\n"
 
     # INIT PARAMETERS
