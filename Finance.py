@@ -17,17 +17,19 @@ def title(os_:str) -> None:
         print("***********************************")
         print("        LUAN FINANCE CONTROL")
         print("***********************************\n")
+        print(Finance.importance)
     elif os_.upper() == "LINUX":
         os.system("clear")
         print("***********************************")
         print("        LUAN FINANCE CONTROL")
         print("***********************************\n")
+        print(Finance.importance)
 
 
 
 
 class Finance:
-    importance = "'Organization is essencial to financial stability, \nand reach the your goals. Either to buy something, \nor to help someone you love.'\n"
+    importance = "'Organization is essencial to financial stability,\n and reach the your goals. Either to buy something,\n or to help someone you love.'\n"
 
     def __init__(
         self,
