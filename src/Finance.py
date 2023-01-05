@@ -59,8 +59,6 @@ class Finance:
         except:
             self.__createCSV(path=pathData)
 
-
-
     def getDatabase(self) -> pd.DataFrame():
         """
         Get the DataFrame with the month data.
@@ -72,8 +70,6 @@ class Finance:
         Get the Raw Salary.
         """
         return self.__rawSalary
-
-
 
     def calculateMonthSpend(self) -> float:
         """
@@ -127,8 +123,6 @@ class Finance:
         print('- Your amount stored this mounth: R$', self.__amountStore)
         print('- Your free amount to spend: R$', self.calculateLiquidSalary(), sep='')
         print('- Your current balance: R$', self.calculateCurrentBalance(), sep='')
-
-
 
     def __createCSV(self, path:str) -> None:
         """
