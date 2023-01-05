@@ -102,6 +102,12 @@ class Finance:
         Method to numerically calculate the amount reserved to invest.
         """
         return self.__rawSalary * self.__porcentInvest
+    
+    def calculateCurrentBalance(self) -> float:
+        total = self.calculateLiquidSalary()
+        for spend in self.__database.TodaySpends.to_list():
+            total -= spend
+        return total
 
     def show_info(self) -> None:
         """
@@ -112,7 +118,7 @@ class Finance:
         print('- Your amount reserved to store: R$', self.calculateStoreNumeric(), sep='')
         print('- Your amount reserved to invest: R$', self.calculateInvestNumeric(), sep='')
         print('- Your free amount to spend: R$', self.calculateLiquidSalary(), sep='')
-        print('- Your current balance: R$')
+        print('- Your current balance: R$', self.calculateCurrentBalance())
 
 
 
