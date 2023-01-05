@@ -29,6 +29,11 @@ def title(os_:str) -> None:
 
 
 class Finance:
+    """
+    This class receive your finance information and do a diary control and saving a CSV with the data. 
+    Therefore, you can stay the finance control, have a sense about your cash and 
+    consequently know what you have to do to achieve your goals.
+    """
     importance = "'Organization is essencial to financial stability,\n and reach the your goals. Either to buy something,\n or to help someone you love.'\n"
 
     def __init__(
