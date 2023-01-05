@@ -1,33 +1,44 @@
 import os
 import pandas as pd
 
+
+
+
 class Finance:
     importance = "'Organization is essencial to financial stability, \nand reach the your goals. Either to buy something, \nor to help someone you love.'\n"
 
-    # INIT PARAMETERS
-    def __init__(self, r_s, p_sp, p_st, spends):
-        self.raw_salary = r_s
-        self.porcent_spend = p_sp
-        self.porcent_store = p_st
-        self.spend = spends
-
-        self.this_day = spends
-        self.this_day['raw_salary'] = r_s
-
+    def __init__(
+        self,
+        rawSalary:float,
+        porcentStore:float,
+        porcentInvest:float,
+        monthSpends:dict,
+        todaySpends:float,
+        pathData:str
+    ):
+        self.__rawSalary = rawSalary
+        self.__porcentSpend = 100 - (porcentStore + porcentInvest)
+        self.__porcentStore = porcentStore
+        self.__porcentInvest = porcentInvest
+        self.__monthSpends = monthSpends
+        self.__todaySpends = todaySpends
         try:
-            self.df = pd.read_csv('finance_control_data.csv')
-            self.df = self.df.drop(columns=['Unnamed: 0'])
+            self.__database = pd.read_csv(filepath_or_buffer=pathData).drop(columns=['Unnamed: 0'])
         except:
-            self.df = self.create_csv(self.spend)
+            self.__create_csv(path=pathData)
+
+
+
 
     # CREATE CSV
-    def create_csv(self, spend):
-        df = pd.DataFrame()
-        for i in enumerate(spend):
-            df[i[1]] = []
-        
-        df.to_csv('finance_control_data.csv')
-        return df
+    def __create_csv(self, path:str):
+        self.__database['RawSalary'] = self.__rawSalary
+        self.__database['PorcentStore'] = self.__porcentStore
+        self.__database['PorcentInvest'] = self.__porcentInvest
+        self.__database['PorcentSpend'] = self.__porcentSpend
+        self.__database['TodaySpends'] = self.__todaySpends
+        self.__database = pd.DataFrame(columns=list(self.__monthSpends.keys()))
+        self.__database.to_csv(path_or_buf=path)
 
     # UPDATE THE CSV
     def update_csv(self, spend):  
