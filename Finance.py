@@ -1,5 +1,6 @@
 import os
 import pandas as pd
+import datetime
 
 
 
@@ -25,19 +26,26 @@ class Finance:
         try:
             self.__database = pd.read_csv(filepath_or_buffer=pathData).drop(columns=['Unnamed: 0'])
         except:
-            self.__create_csv(path=pathData)
+            self.__createCSV(path=pathData)
 
 
 
+
+    def getDatabase(self) -> pd.DataFrame():
+        return self.__database
 
     # CREATE CSV
-    def __create_csv(self, path:str):
-        self.__database['RawSalary'] = self.__rawSalary
-        self.__database['PorcentStore'] = self.__porcentStore
-        self.__database['PorcentInvest'] = self.__porcentInvest
-        self.__database['PorcentSpend'] = self.__porcentSpend
-        self.__database['TodaySpends'] = self.__todaySpends
-        self.__database = pd.DataFrame(columns=list(self.__monthSpends.keys()))
+    def __createCSV(self, path:str) -> None:
+        self.__database = pd.DataFrame()
+        self.__database['Date'] = [datetime.date.today()]
+        self.__database['RawSalary'] = [self.__rawSalary]
+        self.__database['PorcentStore'] = [self.__porcentStore]
+        self.__database['PorcentInvest'] = [self.__porcentInvest]
+        self.__database['PorcentSpend'] = [self.__porcentSpend]
+        self.__database['TodaySpends'] = [self.__todaySpends]
+        for spends in self.__monthSpends:
+            self.__database[spends] = [self.__monthSpends[spends]]
+        self.__database.set_index(keys="Date")
         self.__database.to_csv(path_or_buf=path)
 
     # UPDATE THE CSV
