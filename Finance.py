@@ -41,7 +41,7 @@ class Finance:
         pathData:str
     ):
         self.__rawSalary = rawSalary
-        self.__porcentSpend = 100 - (porcentStore + porcentInvest)
+        self.__porcentSpend = 1 - (porcentStore + porcentInvest)
         self.__porcentStore = porcentStore
         self.__porcentInvest = porcentInvest
         self.__monthSpends = monthSpends
