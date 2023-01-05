@@ -17,8 +17,11 @@ if __name__ == "__main__":
         porcentStore=0.33,
         porcentInvest=0,
         monthSpends=monthSpends,
-        todaySpends=20,
+        amountStore=613,
+        todaySpends=4.10,
         pathData='./my_control.csv'
     )
 
     my_control.show_info()
+
+    print('\n',my_control.getDatabase())

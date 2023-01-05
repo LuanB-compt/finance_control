@@ -37,6 +37,7 @@ class Finance:
         porcentStore:float,
         porcentInvest:float,
         monthSpends:dict,
+        amountStore:float,
         todaySpends:float,
         pathData:str
     ):
@@ -44,6 +45,7 @@ class Finance:
         self.__porcentSpend = 1 - (porcentStore + porcentInvest)
         self.__porcentStore = porcentStore
         self.__porcentInvest = porcentInvest
+        self.__amountStore = amountStore
         self.__monthSpends = monthSpends
         self.__todaySpends = todaySpends
         try:
@@ -82,7 +84,7 @@ class Finance:
         Method to numerically calculate the liquid salary.
         """
         return self.__rawSalary - (
-            self.calculateMonthSpend() + self.calculateStoreNumeric() + self.calculateInvestNumeric()
+            self.calculateMonthSpend() + self.__amountStore + self.calculateInvestNumeric()
         )
     
     def calculateSpendNumeric(self) -> float:
@@ -117,6 +119,7 @@ class Finance:
         print('- Your amount reserved to spend: R$', self.calculateSpendNumeric(), sep='')
         print('- Your amount reserved to store: R$', self.calculateStoreNumeric(), sep='')
         print('- Your amount reserved to invest: R$', self.calculateInvestNumeric(), sep='')
+        print('- Your amount stored this mounth: R$', self.__amountStore)
         print('- Your free amount to spend: R$', self.calculateLiquidSalary(), sep='')
         print('- Your current balance: R$', self.calculateCurrentBalance())
 
@@ -135,6 +138,7 @@ class Finance:
         self.__database['PorcentStore'] = [self.__porcentStore]
         self.__database['PorcentInvest'] = [self.__porcentInvest]
         self.__database['PorcentSpend'] = [self.__porcentSpend]
+        self.__database['AmountStored'] = [self.__amountStore]
         self.__database['TodaySpends'] = [self.__todaySpends]
         for spends in self.__monthSpends:
             self.__database[spends] = [self.__monthSpends[spends]]
@@ -154,6 +158,7 @@ class Finance:
             self.__porcentStore,
             self.__porcentInvest,
             self.__porcentSpend,
+            self.__amountStore,
             self.__todaySpends
         ]
         for spend in self.__monthSpends:
