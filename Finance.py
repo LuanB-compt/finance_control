@@ -67,28 +67,45 @@ class Finance:
         return self.__rawSalary
 
 
+
     def calculateMonthSpend(self) -> float:
+        """
+        Method to numerically calculate the month spends.
+        """
         sum = 0
         for spend in self.__monthSpends.values():
             sum += spend
         return sum
 
     def calculateLiquidSalary(self) -> float:
+        """
+        Method to numerically calculate the liquid salary.
+        """
         return self.__rawSalary - (
             self.calculateMonthSpend() + self.calculateStoreNumeric() + self.calculateInvestNumeric()
         )
     
     def calculateSpendNumeric(self) -> float:
+        """
+        Method to numerically calculate the amount reserved to spend.
+        """
         return self.__rawSalary * self.__porcentSpend
     
     def calculateStoreNumeric(self) -> float:
+        """
+        Method to numerically calculate the amount reserved to store.
+        """
         return self.__rawSalary * self.__porcentStore
 
     def calculateInvestNumeric(self) -> float:
+        """
+        Method to numerically calculate the amount reserved to invest.
+        """
         return self.__rawSalary * self.__porcentInvest
 
     """ def show_info(self) -> None:
         pass """
+
 
 
     def __createCSV(self, path:str) -> None:
@@ -110,8 +127,13 @@ class Finance:
         self.__database.set_index(keys="Date")
         self.__database.to_csv(path_or_buf=path)
 
-
-    def __update_csv(self, path:str) -> None:  
+    def __update_csv(self, path:str) -> None:
+        """
+        Update the month DataFrame/CSV and save.
+        -----------------------
+        Parameters:
+        path: The path and name to save the CSV
+        """
         new_line = [
             str(datetime.date.today()),
             self.__rawSalary,
