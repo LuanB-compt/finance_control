@@ -8,10 +8,12 @@ if __name__ == "__main__":
         'Convênio':50,
         'Higiêne':20,
         'Pai':150,
-        'Transporte':200
+        'Transporte':200,
+        'Recarga':35,
+        'Academia':40
     }
     my_control = Finance.Finance(
-        rawSalary=1200,
+        rawSalary=1300,
         porcentStore=0.33,
         porcentInvest=0,
         monthSpends=monthSpends,
@@ -23,4 +25,3 @@ if __name__ == "__main__":
     print(my_control.calculateLiquidSalary())
     print(my_control.calculateSpendNumeric())
     print(my_control.calculateStoreNumeric())
-    print(my_control.calculateInvestNumeric())
