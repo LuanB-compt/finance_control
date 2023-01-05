@@ -56,9 +56,15 @@ class Finance:
 
     def getDatabase(self) -> pd.DataFrame():
         """
-        Get the DataFrame with the month data
+        Get the DataFrame with the month data.
         """
         return self.__database
+
+    def getRawSalary(self) -> float:
+        """
+        Get the Raw Salary.
+        """
+        return self.__rawSalary
 
 
     def calculateMonthSpend(self) -> float:
