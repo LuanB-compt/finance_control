@@ -103,8 +103,16 @@ class Finance:
         """
         return self.__rawSalary * self.__porcentInvest
 
-    """ def show_info(self) -> None:
-        pass """
+    def show_info(self) -> None:
+        """
+        Method to show the info about the finances.
+        """
+        print('- Your raw salary: R$', self.__rawSalary, sep='')
+        print('- Your amount reserved to spend: R$', self.calculateSpendNumeric(), sep='')
+        print('- Your amount reserved to store: R$', self.calculateStoreNumeric(), sep='')
+        print('- Your amount reserved to invest: R$', self.calculateInvestNumeric(), sep='')
+        print('- Your free amount to spend: R$', self.calculateLiquidSalary(), sep='')
+        print('- Your current balance: R$')
 
 
 
