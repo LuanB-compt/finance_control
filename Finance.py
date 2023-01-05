@@ -40,7 +40,7 @@ class Finance:
         amountStore:float,
         todaySpends:float,
         pathData:str
-    ):
+    ) -> None:
         self.__rawSalary = rawSalary
         self.__porcentSpend = 1 - (porcentStore + porcentInvest)
         self.__porcentStore = porcentStore
