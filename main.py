@@ -6,7 +6,8 @@ if __name__ == "__main__":
     monthSpends = {
         'Spotify':9.9,
         'Convênio':50,
-        'Higiêne':20
+        'Higiêne':20,
+        'Pai':150
     }
     my_control = Finance.Finance(
         rawSalary=1200,
