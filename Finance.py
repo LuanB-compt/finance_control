@@ -46,7 +46,7 @@ class Finance:
         self.__todaySpends = todaySpends
         try:
             self.__database = pd.read_csv(filepath_or_buffer=pathData).drop(columns=['Unnamed: 0'])
-            self.__update_csv()
+            self.__update_csv(path=pathData)
         except:
             self.__createCSV(path=pathData)
 
@@ -60,9 +60,9 @@ class Finance:
 
 
 
-    def __update_csv(self) -> None:  
+    def __update_csv(self, path:str) -> None:  
         new_line = [
-            datetime.date.today(),
+            str(datetime.date.today()),
             self.__rawSalary,
             self.__porcentStore,
             self.__porcentInvest,
@@ -72,9 +72,12 @@ class Finance:
         for spend in self.__monthSpends:
             new_line.append(self.__monthSpends[spend])
 
-        print('\n', self.__database.loc[-1, 'Date'], '\n')
-        #self.df.loc[len(self.df.index)] = new_line
-        #self.df.to_csv('finance_control_data.csv')
+        if self.__database.iloc[-1].Date == str(datetime.date.today()):
+            pass
+        else:
+            self.__database.loc[len(self.__database)] = new_line
+            self.__database.to_csv(path_or_buf=path)
+        
 
 
     def __createCSV(self, path:str) -> None:
