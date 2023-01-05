@@ -61,6 +61,29 @@ class Finance:
         return self.__database
 
 
+    def calculateMonthSpend(self) -> float:
+        sum = 0
+        for spend in self.__monthSpends.values():
+            sum += spend
+        return sum
+
+    def calculateLiquidSalary(self) -> float:
+        return self.__rawSalary - (
+            self.calculateMonthSpend() + self.calculateStoreNumeric() + self.calculateInvestNumeric()
+        )
+    
+    def calculateSpendNumeric(self) -> float:
+        return self.__rawSalary * self.__porcentSpend
+    
+    def calculateStoreNumeric(self) -> float:
+        return self.__rawSalary * self.__porcentStore
+
+    def calculateInvestNumeric(self) -> float:
+        return self.__rawSalary * self.__porcentInvest
+
+    """ def show_info(self) -> None:
+        pass """
+
 
     def __createCSV(self, path:str) -> None:
         """
