@@ -1,30 +1,5 @@
-import os
 import pandas as pd
 import datetime
-
-
-
-
-def title(os_:str) -> None:
-    """
-    Clean the terminal with 'cls' (windows) or 'clear' (linux) and show the program title.
-    ------------------------
-    Parameters:
-    os_: Operational System that will runing the program
-    """
-    if os_.upper() == "WINDOWS":
-        os.system("cls")
-        print("***********************************")
-        print("        LUAN FINANCE CONTROL")
-        print("***********************************\n")
-        print(Finance.importance)
-    elif os_.upper() == "LINUX":
-        os.system("clear")
-        print("***********************************")
-        print("        LUAN FINANCE CONTROL")
-        print("***********************************\n")
-        print(Finance.importance)
-
 
 
 
@@ -59,8 +34,6 @@ class Finance:
         except:
             self.__createCSV(path=pathData)
 
-
-
     def getDatabase(self) -> pd.DataFrame():
         """
         Get the DataFrame with the month data.
@@ -72,8 +45,6 @@ class Finance:
         Get the Raw Salary.
         """
         return self.__rawSalary
-
-
 
     def calculateMonthSpend(self) -> float:
         """
@@ -127,8 +98,6 @@ class Finance:
         print('- Your amount stored this mounth: R$', self.__amountStore)
         print('- Your free amount to spend: R$', self.calculateLiquidSalary(), sep='')
         print('- Your current balance: R$', self.calculateCurrentBalance(), sep='')
-
-
 
     def __createCSV(self, path:str) -> None:
         """

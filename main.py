@@ -1,7 +1,8 @@
 from src import Finance
+from src import utils
 
 if __name__ == "__main__":
-    Finance.title(os_="Linux")
+    utils.title(os_="Linux")
 
     monthSpends = {
         'Gym':9.9,
