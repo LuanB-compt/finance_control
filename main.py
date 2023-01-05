@@ -1,8 +1,8 @@
 import Finance
 
 if __name__ == "__main__":
-    Finance.title(so="Windows")
-    
+    Finance.title(os_="Windows")
+
     monthSpends = {
         'Spotify':9.9,
         'Convênio':50,
