@@ -1,4 +1,5 @@
 # My files
+*.csv
 my/
 
 # Byte-compiled / optimized / DLL files
