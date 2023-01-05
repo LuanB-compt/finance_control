@@ -5,6 +5,21 @@ import datetime
 
 
 
+def title(so:str) -> None:
+    if so.upper() == "WINDOWS":
+        os.system("cls")
+        print("***********************************")
+        print("        LUAN FINANCE CONTROL")
+        print("***********************************\n")
+    elif so.upper() == "LINUX":
+        os.system("clear")
+        print("***********************************")
+        print("        LUAN FINANCE CONTROL")
+        print("***********************************\n")
+
+
+
+
 class Finance:
     importance = "'Organization is essencial to financial stability, \nand reach the your goals. Either to buy something, \nor to help someone you love.'\n"
 
@@ -34,7 +49,16 @@ class Finance:
     def getDatabase(self) -> pd.DataFrame():
         return self.__database
 
-    # CREATE CSV
+
+
+    def update_csv(self, spend):  
+        new_line = list(spend.values())
+        self.df.loc[len(self.df.index)] = new_line
+        self.df.to_csv('finance_control_data.csv')
+        return self.df
+
+
+
     def __createCSV(self, path:str) -> None:
         self.__database = pd.DataFrame()
         self.__database['Date'] = [datetime.date.today()]
@@ -47,28 +71,6 @@ class Finance:
             self.__database[spends] = [self.__monthSpends[spends]]
         self.__database.set_index(keys="Date")
         self.__database.to_csv(path_or_buf=path)
-
-    # UPDATE THE CSV
-    def update_csv(self, spend):  
-        new_line = list(spend.values())
-        self.df.loc[len(self.df.index)] = new_line
-        self.df.to_csv('finance_control_data.csv')
-        return self.df
-
-    # SHOW DICTS
-    def show_dict(self, dict):
-        for i in dict:
-            print(f"\t{i}: R$ {dict[i]}")
-
-    # PORCENT CALCULUS
-    def calc_percent(self, percent, total):
-        if type(percent) == int:
-            percent = percent/100
-            result_percent = total * percent
-            return result_percent
-        elif type(percent) == float:
-            result_percent = total * percent
-            return result_percent
 
     # LIQUID SALARY CALCULUS
     def calc_liquid_salary(self):
@@ -88,25 +90,3 @@ class Finance:
             total_spends = total_spends + dict[i]
 
         return total_spends
-
-    # TOTAL REST CALCULUS
-    def calc_spends(self, spended):
-        rest_spend = self.spend
-
-        for i in self.spend:
-            rest_spend[i] = self.spend[i] - spended[i]
-
-        return rest_spend
-
-    # PRINT A TITLE
-    def title(so):
-        if so == "windows":
-            os.system("cls")
-            print("***********************************")
-            print("        LUAN FINANCE CONTROL")
-            print("***********************************\n")
-        elif so == "linux":
-            os.system("clear")
-            print("***********************************")
-            print("        LUAN FINANCE CONTROL")
-            print("***********************************\n")
