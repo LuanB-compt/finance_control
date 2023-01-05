@@ -121,7 +121,7 @@ class Finance:
         print('- Your amount reserved to invest: R$', self.calculateInvestNumeric(), sep='')
         print('- Your amount stored this mounth: R$', self.__amountStore)
         print('- Your free amount to spend: R$', self.calculateLiquidSalary(), sep='')
-        print('- Your current balance: R$', self.calculateCurrentBalance())
+        print('- Your current balance: R$', self.calculateCurrentBalance(), sep='')
 
 
 
