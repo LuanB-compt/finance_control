@@ -60,26 +60,6 @@ class Finance:
 
 
 
-    def __update_csv(self, path:str) -> None:  
-        new_line = [
-            str(datetime.date.today()),
-            self.__rawSalary,
-            self.__porcentStore,
-            self.__porcentInvest,
-            self.__porcentSpend,
-            self.__todaySpends
-        ]
-        for spend in self.__monthSpends:
-            new_line.append(self.__monthSpends[spend])
-
-        if self.__database.iloc[-1].Date == str(datetime.date.today()):
-            pass
-        else:
-            self.__database.loc[len(self.__database)] = new_line
-            self.__database.to_csv(path_or_buf=path)
-        
-
-
     def __createCSV(self, path:str) -> None:
         """
         Create the month DataFrame and CSV if don't exist.
@@ -98,3 +78,22 @@ class Finance:
             self.__database[spends] = [self.__monthSpends[spends]]
         self.__database.set_index(keys="Date")
         self.__database.to_csv(path_or_buf=path)
+
+
+    def __update_csv(self, path:str) -> None:  
+        new_line = [
+            str(datetime.date.today()),
+            self.__rawSalary,
+            self.__porcentStore,
+            self.__porcentInvest,
+            self.__porcentSpend,
+            self.__todaySpends
+        ]
+        for spend in self.__monthSpends:
+            new_line.append(self.__monthSpends[spend])
+
+        if self.__database.iloc[-1].Date == str(datetime.date.today()):
+            pass
+        else:
+            self.__database.loc[len(self.__database)] = new_line
+            self.__database.to_csv(path_or_buf=path)
