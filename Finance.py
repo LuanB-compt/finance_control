@@ -5,19 +5,19 @@ import datetime
 
 
 
-def title(os:str) -> None:
+def title(os_:str) -> None:
     """
     Clean the terminal with 'cls' (windows) or 'clear' (linux) and show the program title.
     ------------------------
     Parameters:
     os: Operational System that will runing the program
     """
-    if so.upper() == "WINDOWS":
+    if os_.upper() == "WINDOWS":
         os.system("cls")
         print("***********************************")
         print("        LUAN FINANCE CONTROL")
         print("***********************************\n")
-    elif so.upper() == "LINUX":
+    elif os_.upper() == "LINUX":
         os.system("clear")
         print("***********************************")
         print("        LUAN FINANCE CONTROL")
@@ -46,9 +46,9 @@ class Finance:
         self.__todaySpends = todaySpends
         try:
             self.__database = pd.read_csv(filepath_or_buffer=pathData).drop(columns=['Unnamed: 0'])
+            self.update_csv()
         except:
             self.__createCSV(path=pathData)
-
 
 
 
@@ -60,12 +60,15 @@ class Finance:
 
 
 
-    def update_csv(self, spend):  
-        new_line = list(spend.values())
-        self.df.loc[len(self.df.index)] = new_line
-        self.df.to_csv('finance_control_data.csv')
-        return self.df
-
+    def __update_csv(self) -> None:  
+        new_line = [
+            self.__rawSalary, self.__porcentStore, self.__porcentInvest, self.__porcentSpend, self.__todaySpends
+        ]
+        for spend in self.__monthSpends:
+            new_line.append(self.__monthSpends[spend])
+        print(new_line)
+        #self.df.loc[len(self.df.index)] = new_line
+        #self.df.to_csv('finance_control_data.csv')
 
 
     def __createCSV(self, path:str) -> None:
