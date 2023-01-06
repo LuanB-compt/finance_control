@@ -2,7 +2,7 @@
 - Python package to control your finances
 
 ## **REQUIREMENTS**
-- Python >= 3.7
+- Python >= 3.9
 ```
 pip install -r requirements.txt
 ```
